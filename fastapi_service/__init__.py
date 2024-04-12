@@ -6,6 +6,10 @@ from fastapi_service.api.v1 import model_server
 from fastapi_service.settings.logger import LOGGING
 from fastapi_service.settings.settings import settings
 
+# from fastapi_service.model.model import Model
+from fastapi_service.services.model_loader import get_transformer
+
+
 app = FastAPI(
     title=settings.project.project_name,
     docs_url="/api/openapi",
@@ -20,6 +24,9 @@ async def root():
 
 @app.on_event("startup")
 async def startup():
+    #
+    # Model().model = get_transformer()
+
     if settings.project.log_file:
         logging_config.dictConfig(LOGGING)
 

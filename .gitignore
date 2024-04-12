@@ -49,6 +49,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+fastapi_service/static2/
 
 # Translations
 *.mo

@@ -2,16 +2,32 @@ import logging
 import os
 from abc import ABC
 from typing import Any
-
+from sentence_transformers import SentenceTransformer
 import boto3
 
 from fastapi_service.settings.settings import settings, Settings
 
-LOCAL_MODELS_PATH = os.path.dirname(settings.project.base_dir) + settings.project.models_path
-
+# LOCAL_MODELS_PATH = os.path.dirname(settings.project.base_dir) + settings.project.model_path
+#
 logger = logging.getLogger(__name__)
 
-s3 = boto3.client('s3')
+
+#
+# ENDPOINT = "https://console.yandex.cloud/folders/b1gmn7vs5ofi357879d6/storage/buckets/hhbucket"
+#
+# session = boto3.Session(
+#     aws_access_key_id='YCAJEny98L85zWBbOJtoXxhar',
+#     aws_secret_access_key='YCPd2nVAFJU7rs1kVESxzzvwmPGt5fk8xtes4li6',
+#     region_name="ru-central1",
+# )
+#
+#
+# s3 = session.client(
+#     "s3", endpoint_url=ENDPOINT)
+# s3 = boto3.client('s3',
+#
+#                   aws_access_key_id="YCAJEny98L85zWBbOJtoXxhar",
+#                   aws_secret_access_key="YCPd2nVAFJU7rs1kVESxzzvwmPGt5fk8xtes4li6",)
 
 
 class AbstractModelGetter(ABC):
@@ -24,11 +40,9 @@ class AbstractModelGetter(ABC):
 
 
 class ModelLoader(AbstractModelGetter):
-    def get_model(self, conf: Settings) -> bytes:
-        response = s3.get_object(Bucket=conf.s3.bucket_name, Key=conf.s3.model_key)
-        model_bytes = response['Body'].read()
-        return model_bytes
+    def get_model(self, conf: Settings) -> SentenceTransformer:
+        return SentenceTransformer(r'static/model_weights')
 
 
-def get_torch_models() -> bytes:
+def get_transformer() -> SentenceTransformer:
     return ModelLoader().get_model(settings)

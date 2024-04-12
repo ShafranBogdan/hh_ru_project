@@ -10,7 +10,7 @@ class S3(BaseSettings):
     class Config:
         env_prefix = "S3_"
 
-    bucket: str = "bucket_name"
+    bucket_name: str = "hhbucket"
 
 
 class Redis(BaseSettings):
@@ -28,7 +28,7 @@ class UvicornURL(BaseSettings):
     class Config:
         env_prefix = "UVICORN_"
 
-    host: str = "0.0.0.0"
+    host: str = "127.0.0.1"
     port: str = "8000"
 
 
@@ -43,10 +43,12 @@ class ProjectSettings(BaseSettings):
     log_file: bool = False
 
 
+
 class Settings(BaseSettings):
     api: UvicornURL = UvicornURL()
     project: ProjectSettings = ProjectSettings()
     redis: Redis = Redis()
+    s3: S3 = S3()
 
 
 @lru_cache
