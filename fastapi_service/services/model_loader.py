@@ -16,8 +16,8 @@ logger = logging.getLogger(__name__)
 # ENDPOINT = "https://console.yandex.cloud/folders/b1gmn7vs5ofi357879d6/storage/buckets/hhbucket"
 #
 # session = boto3.Session(
-#     aws_access_key_id='YCAJEny98L85zWBbOJtoXxhar',
-#     aws_secret_access_key='YCPd2nVAFJU7rs1kVESxzzvwmPGt5fk8xtes4li6',
+#     aws_access_key_id='',
+#     aws_secret_access_key='',
 #     region_name="ru-central1",
 # )
 #
@@ -26,8 +26,8 @@ logger = logging.getLogger(__name__)
 #     "s3", endpoint_url=ENDPOINT)
 # s3 = boto3.client('s3',
 #
-#                   aws_access_key_id="YCAJEny98L85zWBbOJtoXxhar",
-#                   aws_secret_access_key="YCPd2nVAFJU7rs1kVESxzzvwmPGt5fk8xtes4li6",)
+#                   aws_access_key_id="",
+#                   aws_secret_access_key="",)
 
 
 class AbstractModelGetter(ABC):
